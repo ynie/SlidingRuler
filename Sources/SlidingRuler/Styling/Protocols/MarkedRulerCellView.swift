@@ -37,7 +37,7 @@ public protocol MarkedRulerCellView: FractionableView {
     var step: CGFloat { get }
     var cellWidth: CGFloat { get }
 
-    var numberFormatter: NumberFormatter? { get }
+    var numberFormatter: ((CGFloat) -> String)? { get }
     var markColor: Color { get }
     var cell: CellView { get }
 }

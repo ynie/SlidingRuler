@@ -56,7 +56,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
     /// Edit changed callback.
     private let editingChangedCallback: (Bool) -> ()
     /// Number formatter for ruler's marks.
-    private let formatter: NumberFormatter?
+    private let formatter: ((CGFloat) -> String)?
 
     /// Width of the control, retrieved through preference key.
     @State private var controlWidth: CGFloat?
@@ -129,7 +129,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
          snap: Mark = .none,
          tick: Mark = .none,
          onEditingChanged: @escaping (Bool) -> () = { _ in },
-         formatter: NumberFormatter? = nil) {
+         formatter: ((CGFloat) -> String)? = nil) {
         self._controlValue = value
         self.bounds = .init(uncheckedBounds: (CGFloat(bounds.lowerBound), CGFloat(bounds.upperBound)))
         self.step = CGFloat(step)
@@ -255,7 +255,6 @@ extension SlidingRuler {
     private func horizontalDragChanged(_ value: HorizontalDragGestureValue) {
         let newOffset = self.directionalOffset(value.translation.horizontal + referenceOffset)
         let newValue = self.value(fromOffset: newOffset)
-        
         self.tickIfNeeded(dragOffset, newOffset)
         
         withoutAnimation {

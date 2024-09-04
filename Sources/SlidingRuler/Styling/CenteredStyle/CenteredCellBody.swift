@@ -43,7 +43,7 @@ struct CenteredCellBody: NativeMarkedRulerCellView {
     var bounds: ClosedRange<CGFloat>
     var step: CGFloat
     var cellWidth: CGFloat
-    var numberFormatter: NumberFormatter?
+    var numberFormatter: ((CGFloat) -> String)?
 
     var cell: some RulerCellView { BlankCenteredCellBody(mark: mark, bounds: bounds, step: step, cellWidth: cellWidth) }
 }

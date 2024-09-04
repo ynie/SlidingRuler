@@ -36,7 +36,7 @@ struct Ruler: View, Equatable {
     let step: CGFloat
     let markOffset: CGFloat
     let bounds: ClosedRange<CGFloat>
-    let formatter: NumberFormatter?
+    let formatter: ((CGFloat) -> String)?
     
     var body: some View {
         HStack(spacing: 0) {
@@ -53,8 +53,8 @@ struct Ruler: View, Equatable {
     
     static func ==(lhs: Self, rhs: Self) -> Bool {
         lhs.step == rhs.step &&
-        lhs.cells.count == rhs.cells.count &&
-        (!StaticSlidingRulerStyleEnvironment.hasMarks || lhs.markOffset == rhs.markOffset)
+        lhs.cells.count == rhs.cells.count
+//        (!StaticSlidingRulerStyleEnvironment.hasMarks || lhs.markOffset == rhs.markOffset)
     }
 }
 

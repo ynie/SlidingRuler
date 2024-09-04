@@ -34,7 +34,7 @@ extension NativeMarkedRulerCellView {
     var markColor: Color {
         bounds.contains(mark) ? .init(.label) : .init(.tertiaryLabel)
     }
-    var displayMark: String { numberFormatter?.string(for: mark) ?? "\(mark.approximated())" }
+    var displayMark: String { numberFormatter?(mark) ?? "\(mark.approximated())" }
 
     var body: some View {
         VStack {
